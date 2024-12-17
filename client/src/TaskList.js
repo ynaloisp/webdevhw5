@@ -11,14 +11,16 @@ const TaskList = () => {
 
   useEffect(() => {
     const getTasks = async () => {
-      const response = await axios.get("http://localhost:3001/api/tasks");
+      const response = await axios.get(
+        "https://webdevhw5-ihjs.vercel.app/api/tasks"
+      );
       setTasks(response.data.reverse());
     };
     getTasks();
   }, []);
 
   const handleDelete = async (id) => {
-    await axios.delete(`http://localhost:3001/api/tasks/${id}`);
+    await axios.delete(`https://webdevhw5-ihjs.vercel.app/api/tasks/${id}`);
     setTasks(tasks.filter((task) => task._id !== id));
     setCompletedTasks([
       tasks.find((task) => task._id === id),
@@ -49,7 +51,7 @@ const TaskList = () => {
 
   const handleCreate = async (newTask) => {
     const response = await axios.post(
-      "http://localhost:3001/api/tasks",
+      "https://webdevhw5-ihjs.vercel.app/api/tasks",
       newTask
     );
     setTasks([response.data, ...tasks]);
